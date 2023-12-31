@@ -28,8 +28,8 @@ define Package/databag/install
 	$(INSTALL_BIN) $(GO_PKG_BUILD_BIN_DIR)/databag $(1)/usr/bin/databag
 	$(INSTALL_DIR) $(1)/etc/init.d
 	$(INSTALL_BIN) $(PKG_BUILD_DIR)/databag.init $(1)/etc/init.d/databag
-	$(INSTALL_DIR) $(1)/var/lib/databag
-	$(CP) -r $(PKG_BUILD_DIR)/web $(1)/var/lib/databag/
+	$(INSTALL_DIR) $(1)/opt/databag
+	$(CP) -r $(PKG_BUILD_DIR)/web $(1)/opt/databag/
 endef
 
 define Package/databag
