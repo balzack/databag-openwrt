@@ -8,6 +8,7 @@ STOP=15
 start() {        
         echo start
         mkdir -p /var/lib/databag/assets
+        cp -n /opt/databag/databag.db /var/lib/databag/
         /usr/bin/databag 7000 /opt/databag/web
 }                 
  
