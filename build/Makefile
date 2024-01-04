@@ -1,12 +1,13 @@
+
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=databag
-PKG_VERSION:=1.1.20
+PKG_VERSION:=1.1.22
 PKG_RELEASE:=1
 
 PKG_SOURCE:=v$(PKG_VERSION).tar.gz
 PKG_SOURCE_URL:=https://github.com/balzack/databag-openwrt/archive/refs/tags
-PKG_HASH:=2d70393b938254d08da3b53025806032cb84e46750235882c1d116df714ba623
+PKG_HASH:=1c8166fde968d61a698cafb5b985faa28d0cc7f5e5e90140d1f8f8c6af19b952
 
 PKG_MAINTAINER:=Roland Osborne <roland.osborne@gmail.com>
 PKG_LICENSE:=Apache-2.0
@@ -48,4 +49,3 @@ endef
 
 $(eval $(call GoBinPackage,databag))
 $(eval $(call BuildPackage,databag))
-

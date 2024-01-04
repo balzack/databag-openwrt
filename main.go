@@ -20,6 +20,6 @@ func main() {
     methods := handlers.AllowedMethods([]string{"GET", "HEAD", "POST", "PUT", "DELETE", "OPTIONS"})
     log.Fatal(http.ListenAndServe(port, handlers.CORS(origins, methods)(router)))
   } else {
-    log.Printf("usage: databag <port> <database path>");
+    log.Printf("usage: databag <port> <store path>");
   }
 }
