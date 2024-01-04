@@ -21,7 +21,7 @@ func GetNodeConfig(w http.ResponseWriter, r *http.Request) {
   config.EnableImage = getBoolConfigValue(CNFEnableImage, true)
   config.EnableAudio = getBoolConfigValue(CNFEnableAudio, true)
   config.EnableVideo = getBoolConfigValue(CNFEnableVideo, true)
-  config.KeyType = getStrConfigValue(CNFKeyType, APPRSA4096)
+  config.KeyType = getStrConfigValue(CNFKeyType, APPRSA2048)
   config.PushSupported = getBoolConfigValue(CNFPushSupported, true)
   config.EnableIce = getBoolConfigValue(CNFEnableIce, false)
 	config.IceUrl = getStrConfigValue(CNFIceUrl, "")
