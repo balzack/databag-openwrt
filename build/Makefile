@@ -1,12 +1,12 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=databag
-PKG_VERSION:=1.1.17
+PKG_VERSION:=1.1.20
 PKG_RELEASE:=1
 
 PKG_SOURCE:=v$(PKG_VERSION).tar.gz
 PKG_SOURCE_URL:=https://github.com/balzack/databag-openwrt/archive/refs/tags
-PKG_HASH:=60f50c3856cd1dc16196dce0a363e150435b1690d2580da34a8639903ecadc89
+PKG_HASH:=2d70393b938254d08da3b53025806032cb84e46750235882c1d116df714ba623
 
 PKG_MAINTAINER:=Roland Osborne <roland.osborne@gmail.com>
 PKG_LICENSE:=Apache-2.0
@@ -29,6 +29,7 @@ define Package/databag/install
 	$(INSTALL_DIR) $(1)/etc/init.d
 	$(INSTALL_BIN) $(PKG_BUILD_DIR)/databag.init $(1)/etc/init.d/databag
 	$(INSTALL_DIR) $(1)/opt/databag
+	$(INSTALL_BIN) $(PKG_BUILD_DIR)/databag.db $(1)/opt/databag/
 	$(CP) -r $(PKG_BUILD_DIR)/web $(1)/opt/databag/
 endef
 

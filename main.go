@@ -14,12 +14,12 @@ func main() {
   args := os.Args
   if len(args) == 3 {
     port := ":" + args[1]
-    store.SetPath("/var/lib/databag/databag.db")
-    router := app.NewRouter(args[2])
+    store.SetPath(args[2])
+    router := app.NewRouter("/opt/databag/web")
     origins := handlers.AllowedOrigins([]string{"*"})
     methods := handlers.AllowedMethods([]string{"GET", "HEAD", "POST", "PUT", "DELETE", "OPTIONS"})
     log.Fatal(http.ListenAndServe(port, handlers.CORS(origins, methods)(router)))
   } else {
-    log.Printf("usage: databag <port> <web path>");
+    log.Printf("usage: databag <port> <database path>");
   }
 }
