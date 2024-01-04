@@ -9,7 +9,7 @@ start() {
         echo start
         mkdir -p /tmp/databag/assets
         cp -n /opt/databag/databag.db /tmp/databag/
-        /usr/bin/databag 7000 /tmp/databag/databag.db
+        /usr/bin/databag 7000 /tmp/databag/databag.db > /tmp/databag/service.log
 }                 
  
 stop() {          
