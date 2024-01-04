@@ -7,10 +7,10 @@ STOP=15
  
 start() {        
         echo "starting databag"
-        PATH=`cat /etc/databag/store_path.txt`
-        mkdir -p "${PATH}/assets"
-        cp -n /opt/databag/databag.db ${PATH}
-        /usr/bin/databag 7000 ${PATH} > "${PATH}/service.log"
+        DATABAG_STORE_PATH=`cat /etc/databag/store_path.txt`
+        mkdir -p "${DATABAG_STORE_PATH}/assets"
+        cp -n /opt/databag/databag.db ${DATABAG_STORE_PATH}
+        /usr/bin/databag 7000 ${DATABAG_STORE_PATH} > "${DATABAG_STORE_PATH}/service.log"
 }                 
  
 stop() {          
