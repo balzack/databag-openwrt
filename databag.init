@@ -8,9 +8,10 @@ STOP=15
 start() {        
         echo "starting databag"
         DATABAG_STORE_PATH=`cat /etc/databag/store_path.txt`
+        DATABAG_SERVICE_PORT=`cat /etc/databag/service_port.txt`
         mkdir -p "${DATABAG_STORE_PATH}/assets"
         cp -n /opt/databag/databag.db ${DATABAG_STORE_PATH}
-        /usr/bin/databag 7000 ${DATABAG_STORE_PATH} > "${DATABAG_STORE_PATH}/service.log"
+        /usr/bin/databag ${DATABAG_SERVICE_PORT} ${DATABAG_STORE_PATH} > "${DATABAG_STORE_PATH}/service.log"
 }                 
  
 stop() {          
