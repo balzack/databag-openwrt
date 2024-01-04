@@ -6,13 +6,14 @@ START=10
 STOP=15
  
 start() {        
-        echo start
-        mkdir -p /tmp/databag/assets
-        cp -n /opt/databag/databag.db /tmp/databag/
-        /usr/bin/databag 7000 /tmp/databag/ > /tmp/databag/service.log
+        echo "starting databag"
+        PATH=`cat /etc/databag/store_path.txt`
+        mkdir -p "${PATH}/assets"
+        cp -n /opt/databag/databag.db ${PATH}
+        /usr/bin/databag 7000 ${PATH} > "${PATH}/service.log"
 }                 
  
 stop() {          
-        echo stop
+        echo "stopping databag"
         killall databag 
 }
