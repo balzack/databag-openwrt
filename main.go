@@ -10,7 +10,6 @@ import (
 )
 
 func main() {
-
   args := os.Args
   if len(args) == 3 {
     port := ":" + args[1]
