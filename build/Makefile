@@ -1,13 +1,13 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=databag
-PKG_VERSION:=1.1.27
+PKG_VERSION:=1.1.31
 PKG_RELEASE:=1
 
 PKG_SOURCE:=$(PKG_NAME)-v$(PKG_VERSION).tar.gz
 PKG_SOURCE_URL_FILE:=v$(PKG_VERSION).tar.gz
 PKG_SOURCE_URL:=https://github.com/balzack/databag-openwrt/archive/refs/tags/
-PKG_HASH:=9ea8d2d8d28ccb1226bbb1e17923a2e926e6816ea202c5a01f75ff3cf81d282c
+PKG_HASH:=d2c471bde5059cfa26b3aa746fdb5e4b0e9cd19c248b2bcace2e5e440f9623bd
 
 PKG_MAINTAINER:=Roland Osborne <roland.osborne@gmail.com>
 PKG_LICENSE:=Apache-2.0
@@ -23,18 +23,25 @@ GO_PKG:=databag
 include $(INCLUDE_DIR)/package.mk
 include ../../lang/golang/golang-package.mk
 
+define Download/static_web
+	URL:=https://github.com/balzack/databag-openwrt/releases/download/v$(PKG_VERSION)
+	URL_FILE:=webapp.tar.gz
+	FILE:=$(PKG_NAME)-$(PKG_VERSION)-webapp.tar.gz
+	HASH:=8c411d8827ac57e2125a00189484d44ea35db3dbc6ecbef9650e203af27d9075
+endef
+
 define Package/databag/install
 	$(call GoPackage/Package/Install/Bin,$(1))
 	$(INSTALL_DIR) $(1)/usr/bin
 	$(INSTALL_BIN) $(GO_PKG_BUILD_BIN_DIR)/databag $(1)/usr/bin/databag
-	$(INSTALL_DIR) $(1)/etc/init.d
-	$(INSTALL_BIN) $(PKG_BUILD_DIR)/databag.init $(1)/etc/init.d/databag
-	$(INSTALL_DIR) $(1)/etc/databag
-	$(INSTALL_BIN) $(PKG_BUILD_DIR)/store_path.txt $(1)/etc/databag
-	$(INSTALL_BIN) $(PKG_BUILD_DIR)/service_port.txt $(1)/etc/databag
 	$(INSTALL_DIR) $(1)/opt/databag
 	$(INSTALL_BIN) $(PKG_BUILD_DIR)/databag.db $(1)/opt/databag/
-	$(CP) -r $(PKG_BUILD_DIR)/web $(1)/opt/databag/
+	$(INSTALL_DIR) $(1)/opt/databag/web
+	$(TAR) xf $(DL_DIR)/$(PKG_NAME)-$(PKG_VERSION)-webapp.tar.gz -C $(1)/opt/databag/web/
+	$(INSTALL_DIR) $(1)/etc/init.d
+	$(INSTALL_BIN) files/databag.init $(1)/etc/init.d/databag
+	$(INSTALL_DIR) $(1)/etc/config
+	$(INSTALL_CONF) files/databag.config $(1)/etc/config/databag
 endef
 
 define Package/databag
@@ -50,5 +57,6 @@ define Package/databagdescription
   Databag is a federated messaging service with browser and mobile clients.
 endef
 
+$(eval $(call Download,static_web))
 $(eval $(call GoBinPackage,databag))
 $(eval $(call BuildPackage,databag))
