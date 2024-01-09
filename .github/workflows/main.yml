@@ -32,9 +32,14 @@ jobs:
         command: c
         cwd: ./
         files: |
+          LICENSE
           web/build
           internal
-        outPath: webapp.tar.gz
+          databag.db
+          go.mod
+          go.sum
+          main.go
+        outPath: service.tar.gz
           
     - name: Create Release
       id: create_release
@@ -54,7 +59,7 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.PUB_TOKEN }}
       with:
         upload_url: ${{ steps.create_release.outputs.upload_url }} # This pulls from the CREATE RELEASE step above, referencing it's ID to get its outputs object, which include a `upload_url`. See this blog post for more info: https://jasonet.co/posts/new-features-of-github-actions/#passing-data-to-future-steps 
-        asset_path: webapp.tar.gz
-        asset_name: webapp.tar.gz
+        asset_path: service.tar.gz
+        asset_name: service.tar.gz
         asset_content_type: application/zip
           
