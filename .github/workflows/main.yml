@@ -26,14 +26,14 @@ jobs:
           yarn build
 
     - name: Compress action step
-        uses: a7ul/tar-action@v1.1.0
-        id: compress
-        with:
-          command: c
-          cwd: web
-          files: |
-            web/build/*
-          outPath: webapp.tar.gz
+      uses: a7ul/tar-action@v1.1.0
+      id: compress
+      with:
+        command: c
+        cwd: web
+        files: |
+          web/build/*
+        outPath: webapp.tar.gz
           
     - name: Create Release
       id: create_release
