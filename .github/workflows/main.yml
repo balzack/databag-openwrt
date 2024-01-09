@@ -30,9 +30,10 @@ jobs:
       id: compress
       with:
         command: c
-        cwd: web
+        cwd: ./
         files: |
-          ./build
+          web/build
+          web/internal
         outPath: webapp.tar.gz
           
     - name: Create Release
