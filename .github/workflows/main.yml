@@ -25,6 +25,16 @@ jobs:
           yarn install
           yarn build
 
+    - name: Compress action step
+        uses: a7ul/tar-action@v1.1.0
+        id: compress
+        with:
+          command: c
+          cwd: web
+          files: |
+            web/build/*
+          outPath: webapp.tar.gz
+          
     - name: Create Release
       id: create_release
       uses: actions/create-release@v1
@@ -43,7 +53,7 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.PUB_TOKEN }}
       with:
         upload_url: ${{ steps.create_release.outputs.upload_url }} # This pulls from the CREATE RELEASE step above, referencing it's ID to get its outputs object, which include a `upload_url`. See this blog post for more info: https://jasonet.co/posts/new-features-of-github-actions/#passing-data-to-future-steps 
-        asset_path: web/build
-        asset_name: web.zip
+        asset_path: web
+        asset_name: webapp.tar.gz
         asset_content_type: application/zip
           
