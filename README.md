@@ -1,4 +1,4 @@
-This is just a copy of Databag formatted for building within OpenWrt. The browser app has been built and resulting static web files copied to the web folder. The server is left as source to be built within the OpenWrt build system.
+This is just a copy of Databag formatted for building within OpenWrt. 
 
 The device admin should update the uci config specifying the service port and persistent storage path with their router configuration.
   
