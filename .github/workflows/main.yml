@@ -30,16 +30,10 @@ jobs:
       id: compress
       with:
         command: c
-        cwd: ./
+        cwd: web
         files: |
-          LICENSE
-          web/build
-          internal
-          databag.db
-          go.mod
-          go.sum
-          main.go
-        outPath: service.tar.gz
+          build
+        outPath: webapp.tar.gz
           
     - name: Create Release
       id: create_release
