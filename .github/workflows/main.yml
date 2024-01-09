@@ -33,7 +33,7 @@ jobs:
         cwd: web
         files: |
           ./build
-        outPath: webapp.tar.gz
+        outPath: web/webapp.tar.gz
           
     - name: Create Release
       id: create_release
